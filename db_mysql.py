@@ -33,7 +33,7 @@ class MysqlBase:
 
 class BuyDb(MysqlBase):
 
-    def get_newest(self, limit: int = 5):
+    def get_newest(self, limit: int = 10):
         buy_list = []
         sql = """
             SELECT id
@@ -41,7 +41,7 @@ class BuyDb(MysqlBase):
                 , kind, winning
                 , created_at, updated_at
               FROM buy
-              WHERE winning > 0 AND target_date <= (SELECT MAX(lottery_date) FROM lotteries)
+              WHERE winning >= 0 AND target_date <= (SELECT MAX(lottery_date) FROM lotteries)
               ORDER BY target_date DESC, kind ASC LIMIT %s;
         """
 
@@ -64,6 +64,52 @@ class BuyDb(MysqlBase):
 
         return buy_list
 
+
+class LotteryDb(MysqlBase):
+    def get_newest(self):
+
+        sql = """
+            SELECT id, lottery_date, times, num_set, kind
+                , one_unit, one_amount, two_unit, two_amount
+                , three_unit, three_amount, four_unit, four_amount
+                , five_unit, five_amount, six_unit, six_amount
+                , sales, carryover
+                , created_at, updated_at
+              FROM lotteries
+              ORDER BY times DESC LIMIT 1;
+        """
+        # WHERE lottery_date = %s ORDER BY times DESC LIMIT 1;
+
+        self.cursor.execute(sql)
+
+        rows = self.cursor.fetchall()
+
+        loto_data = None
+        for row in rows:
+            loto_data = LotoData()
+            loto_data.id = row[0]
+            loto_data.lottery_date = row[1]
+            loto_data.times = row[2]
+            loto_data.num_set = row[3]
+            loto_data.kind = row[4]
+            loto_data.one_unit = row[5]
+            loto_data.one_amount = row[6]
+            loto_data.two_unit = row[7]
+            loto_data.two_amount = row[8]
+            loto_data.three_unit = row[9]
+            loto_data.three_amount = row[10]
+            loto_data.four_unit = row[11]
+            loto_data.four_amount = row[12]
+            loto_data.five_unit = row[13]
+            loto_data.five_amount = row[14]
+            loto_data.six_unit = row[15]
+            loto_data.six_amount = row[16]
+            loto_data.sales = row[17]
+            loto_data.carryover = row[18]
+            loto_data.created_at = row[19]
+            loto_data.updated_at = row[20]
+
+        return loto_data
 
 class Loto(MysqlBase):
 
