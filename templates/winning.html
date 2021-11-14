@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>winning</title>
+</head>
+<body>
+    {% for winning_data in winning_list %}
+        <table>
+{#        <li>{{ winning_data }}</li>#}
+        {% for key, value in winning_data.items() %}
+            <td>{{ value }}</td>
+        {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>

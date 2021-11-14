@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>{{ newest_data.times }}回 {{ newest_data.lottery_date }}</h1>
+        <table>
+            <tr>
+                <td>1等 {{ newest_data.one_unit }}</td>
+                <td>{{ newest_data.one_amount }}</td>
+            </tr>
+            <tr>
+            <td>2等 {{ newest_data.two_unit }}</td>
+            <td>{{ newest_data.two_amount }}</td>
+            </tr>
+            <tr>
+            <td>3等 {{ newest_data.three_unit }}</td>
+            <td>{{ newest_data.three_amount }}</td>
+            </tr>
+            <tr>
+            <td>4等 {{ newest_data.four_unit }}</td>
+            <td>{{ newest_data.four_amount }}</td>
+            </tr>
+            <tr>
+            <td>5等 {{ newest_data.five_unit }}</td>
+            <td>{{ newest_data.five_amount }}</td>
+            </tr>
+            <tr>
+            <td>6等 {{ newest_data.six_unit }}</td>
+            <td>{{ newest_data.six_amount }}</td>
+            </tr>
+            <tr>
+            <td>キャリーオーバ {{ newest_data.carry_over}}</td>
+            </tr>
+            <tr>
+            <td>セールス {{ newest_data.sales}}</td>
+            </tr>
+        </table>
+</body>
+</html>
