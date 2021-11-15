@@ -4,12 +4,11 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-buy_db = BuyDb()
-lottery_db = LotteryDb()
 
 
 @app.route('/newest')
 def get_newest():
+    lottery_db = LotteryDb()
 
     newest_data = lottery_db.get_newest()
 
@@ -42,6 +41,7 @@ def get_newest():
 
 @app.route('/newest.json')
 def get_newest_json():
+    lottery_db = LotteryDb()
 
     newest_data = lottery_db.get_newest()
 
@@ -74,6 +74,9 @@ def get_newest_json():
 
 @app.route('/winning')
 def get_winning():
+    buy_db = BuyDb()
+    lottery_db = LotteryDb()
+
     newest_list = buy_db.get_newest()
 
     response_data = []
@@ -115,6 +118,8 @@ def get_winning():
 
 @app.route('/winning.json')
 def get_winning_json():
+    buy_db = BuyDb()
+
     newest_list = buy_db.get_newest()
 
     response_data = []
