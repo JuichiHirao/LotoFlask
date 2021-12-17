@@ -5,6 +5,12 @@ from datetime import datetime
 app = Flask(__name__)
 
 
+@app.route('/healthcheck')
+def health_check():
+    return jsonify({
+        'status': 'OK',
+    })
+
 
 @app.route('/newest')
 def get_newest():
